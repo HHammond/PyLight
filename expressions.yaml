@@ -1,0 +1,53 @@
+
+Action:
+    Select:
+        Expression: |
+            (select)
+
+        Description: Determine if action is select or find
+        Matches: select | none
+        Groups:
+            - Action
+
+Target:
+    Doctype:
+        Expression: |
+            (?
+                | (file)[s]?
+                | (script)[s]?
+                | (code)[s]?
+                | (text)(?!\s+document)
+                | (text)(?=\s+document)[s]
+                | (document)[s]?
+                | (picture)[s]?
+                | (movie)[s]?
+                | (audio)[s]?
+                | (pdf)[s]?
+                | (folder)[s]?
+                | (all)
+            )
+        Matches: |
+            filetypes
+        Groups:
+            - Type
+
+Scope:
+    Folder:
+        Expression: |
+            (?<Location>[^\n]*)
+        Matches: |
+            Location
+        Groups:
+            - Location
+
+Filter:
+    Regex:
+        Expression: |
+            (?
+                | (?P<Type>re)\n+(?P<Content>[^\n]*)\n?
+            )
+        Matches: |
+            re("expression")
+        Groups:
+            - Type
+            - Content

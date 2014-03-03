@@ -1,0 +1,25 @@
+
+Query:
+    ORDER: 1
+    Pattern: |
+        ^\s*<Action>(?:\s+)<Target>(?:\s|\b)+
+
+QueryLocation:
+    ORDER: 2
+    Pattern: |
+        <Query>(?:\s?from\s?)<Scope>
+
+BaseQuery:
+    ORDER: 10
+    Pattern: |
+        <Query>
+
+QueryFilterLocation:
+    ORDER: 20
+    Pattern: |
+        <QueryLocation> (?:\s+filter\s+) <Filter>
+
+QueryFilter:          
+    ORDER: 100
+    Pattern: |
+        <Query> (?:\s+filter\s+) <Filter>
